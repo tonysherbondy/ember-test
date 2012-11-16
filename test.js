@@ -12,15 +12,15 @@ module('Minimal Application Setup', {
   },
   teardown: function() {
     if (application) {
-      return Ember.run(function() {
-        return application.destroy();
+      Ember.run(function() {
+        application.destroy();
       });
     }
   }
 });
 
 test('Ember exists', function() {
-  return ok(Ember, "Ember exists on global namespace");
+  ok(Ember, "Ember exists on global namespace");
 });
 
 test("Minimal Application initialized with an application template and injections", function() {
@@ -37,7 +37,7 @@ test("Minimal Application initialized with an application template and injection
   Ember.run(function() {
     var stateManager;
     stateManager = Ember.Object.create();
-    return app.initialize(stateManager);
+    app.initialize(stateManager);
   });
   equal(Ember.$('#qunit-fixture').text(), 'Hello Kris!');
 
@@ -49,15 +49,15 @@ test("Minimal Application initialized with an application template and injection
 module('Another Application Setup', {
   setup: function() {
     Ember.$("#qunit-fixture").html("<div id='one'><div id='one-child'>HI</div></div><div id='two'>HI</div>");
-    return Ember.run(function() {
+    Ember.run(function() {
       application = Ember.Application.create({
         rootElement: '#one'
       });
-      return application.initialize();
+      application.initialize();
     });
   }
 });
 
-test('Ember still exists', function() {
+test('This fails every other time', function() {
   return ok(Ember, "Ember exists on global namespace");
 });
